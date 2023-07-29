@@ -31,6 +31,6 @@ jobs:
 
     steps:
       - name: sequential build action
-        run: echo "sequential build action step #1"
+        run: echo "sequential build action step \#1"
       - name: print github context
         run: echo "${{ toJson(github) }}"
