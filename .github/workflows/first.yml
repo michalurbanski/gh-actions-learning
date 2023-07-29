@@ -13,3 +13,12 @@ jobs:
     steps:
       - name: first step
         run: echo "This is the first step"
+      - name: second step
+        run: echo "This is the second step"
+  
+  second-build-action:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "second build action 1"
+        run: echo "second build action step 1"
