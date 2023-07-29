@@ -16,9 +16,19 @@ jobs:
       - name: second step
         run: echo "This is the second step"
   
+  # This job runs in parallel with the first job
   second-build-action:
     runs-on: ubuntu-latest
 
     steps:
       - name: "second build action 1"
         run: echo "second build action step 1"
+  
+  # This job runs sequential to previous two jobs
+  sequential-build-action:
+    runs-on: ubuntu-latest
+    needs: ["first-build-action", "second-build-action"]
+
+    steps:
+      - name: sequential build action
+        run: echo "sequential build action step #1"
