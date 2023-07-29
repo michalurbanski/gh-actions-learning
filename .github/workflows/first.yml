@@ -6,7 +6,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  first build action:
+  # Name of the job cannot contain spaces.
+  first-build-action:
     runs-on: ubuntu-latest
     
     steps:
