@@ -28,7 +28,7 @@ jobs:
           echo "second line"
       - name: variables and secrets
         run: |
-          echo "env variable: ${{ env.DATABASE_NAME }}"
+          echo "env variable: $DATABASE_NAME" # linux runner - can be printed like a regular bash variable
           echo "secret variable: ${{ env.SECRET_PASSWORD }}"
           echo "another variable: ${{ env.ANOTHER_VARIABLE }}"
   
