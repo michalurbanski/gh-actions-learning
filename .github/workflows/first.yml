@@ -8,6 +8,7 @@ on:
 
 env:
     DATABASE_NAME: test-database
+    ANOTHER_VARIABLE: "are you hiding this one as well?"
     SECRET_PASSWORD: ${{ secrets.SECRET_PASSWORD }}
 
 jobs:
@@ -29,6 +30,7 @@ jobs:
         run: |
           echo "env variable: ${{ env.DATABASE_NAME }}"
           echo "secret variable: ${{ env.SECRET_PASSWORD }}"
+          echo "another variable: ${{ env.ANOTHER_VARIABLE }}"
   
   # This job runs in parallel with the first job.
   second-build-action:
