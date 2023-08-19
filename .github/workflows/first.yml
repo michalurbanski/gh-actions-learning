@@ -10,6 +10,7 @@ env:
     DATABASE_NAME: test-database
     ANOTHER_VARIABLE: "are you hiding this one as well?"
     SECRET_PASSWORD: ${{ secrets.SECRET_PASSWORD }}
+    ARTIFACT_NAME: logs
 
 jobs:
   # Name of the job cannot contain spaces.
@@ -40,7 +41,7 @@ jobs:
       - name: store artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: logs
+          name: ${{ env.ARTIFACT_NAME }}
           path: |
             *.log
   
@@ -62,3 +63,9 @@ jobs:
         run: echo "sequential build action step \#1"
       - name: print github context
         run: echo "${{ toJson(github) }}"
+      - name: uses artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+      - name: print logs
+        run: cat output.log
