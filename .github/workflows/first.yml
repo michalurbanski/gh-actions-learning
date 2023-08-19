@@ -3,6 +3,7 @@ name: First simple pipeline
 on:
   pull_request:
     branches: ["main"]
+  # Allow starting from the UI.
   workflow_dispatch:
 
 jobs:
@@ -15,8 +16,12 @@ jobs:
         run: echo "This is the first step"
       - name: second step
         run: echo "This is the second step"
+      - name: third step - multiple commands
+        run: |
+          echo "first line"
+          echo "second line"
   
-  # This job runs in parallel with the first job
+  # This job runs in parallel with the first job.
   second-build-action:
     runs-on: ubuntu-latest
 
@@ -24,7 +29,7 @@ jobs:
       - name: "second build action 1"
         run: echo "second build action step 1"
   
-  # This job runs sequential to previous two jobs
+  # This job runs sequential to previous two jobs.
   sequential-build-action:
     runs-on: ubuntu-latest
     needs: ["first-build-action", "second-build-action"]
