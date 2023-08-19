@@ -6,11 +6,16 @@ on:
   # Allow starting from the UI.
   workflow_dispatch:
 
+env:
+    DATABASE_NAME: test-database
+    SECRET_PASSWORD: ${{ secrets.SECRET_PASSWORD }}
+
 jobs:
   # Name of the job cannot contain spaces.
   first-build-action:
     runs-on: ubuntu-latest
-    
+    environment: dev # There are secrets defined for the 'dev' environment in the project settings.
+
     steps:
       - name: first step
         run: echo "This is the first step"
@@ -20,6 +25,10 @@ jobs:
         run: |
           echo "first line"
           echo "second line"
+      - name: variables and secrets
+        run: |
+          echo "env variable: ${{ env.DATABASE_NAME }}"
+          echo "secret variable: ${{ env.SECRET_PASSWORD }}"
   
   # This job runs in parallel with the first job.
   second-build-action:
