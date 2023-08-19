@@ -15,7 +15,11 @@ jobs:
   # Name of the job cannot contain spaces.
   first-build-action:
     runs-on: ubuntu-latest
-    environment: dev # There are secrets defined for the 'dev' environment in the project settings.
+    
+    # By adding an environment, not it becomes a deployment pipeline for this environment.
+    # Deployments to environments are visible in a separate section in the UI.
+    # There are secrets defined for the 'dev' environment in the project settings.
+    environment: dev 
 
     steps:
       - name: first step
@@ -31,6 +35,14 @@ jobs:
           echo "env variable: $DATABASE_NAME" # linux runner - can be printed like a regular bash variable
           echo "secret variable: ${{ env.SECRET_PASSWORD }}"
           echo "another variable: ${{ env.ANOTHER_VARIABLE }}"
+      - name: create artifact
+        run: echo "test" > output.log
+      - name: store artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: logs
+          path: |
+            *.log
   
   # This job runs in parallel with the first job.
   second-build-action:
