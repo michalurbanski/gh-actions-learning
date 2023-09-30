@@ -86,4 +86,14 @@ jobs:
           echo "running the report"
           echo "this step should be run only when deploy fails"
       - name: report2
+        # This step is skipped because there was previously a failure.
+        # It doesn't matter that the step before it has succeeded on failure.
         run: echo "will this one be skipped?"
+
+  failure-handling-job:
+    runs-on: ubuntu-latest
+    needs: deploy-job
+    if: failure()
+    steps:
+      - name: deployment failure handling
+        run: echo "I'm being executed because deploy-job failed"
