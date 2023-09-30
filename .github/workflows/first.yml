@@ -79,4 +79,7 @@ jobs:
       - name: deploy
         run: exit 1
       - name: report
-        run: echo "running the report"
+        if: failure()
+        run: |
+          echo "running the report"
+          echo "this step should be run only when deploy fails"
