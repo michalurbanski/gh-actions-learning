@@ -79,7 +79,11 @@ jobs:
       - name: deploy
         run: exit 1
       - name: report
+        # The 'if' condition has to have failure() function; otherwise it would be skipped
+        # (the default behavior is that if one step fails, then other are skipped).
         if: failure()
         run: |
           echo "running the report"
           echo "this step should be run only when deploy fails"
+      - name: report2
+        run: echo "will this one be skipped?"
