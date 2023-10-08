@@ -14,3 +14,10 @@ jobs:
           echo "This is the first step for: ${{ matrix.environment }}"
       - name: Second Step
         run: echo "This is the second step. Always the same"
+  
+  deploy:
+    runs-on: ubuntu-latest
+    needs: "build (prod)"
+    steps:
+      - name: Deploy first step
+        run: echo "deploying ..."
