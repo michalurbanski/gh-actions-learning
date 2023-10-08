@@ -1,0 +1,16 @@
+name: Matrix jobs demo
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        environment: [dev, test, prod]
+    runs-on: ubuntu-latest
+    steps:
+      - name: First Step
+        run: |
+          echo "This is the first step for: ${{ matrix.environment }}"
+      - name: Second Step
+        run: echo "This is the second step. Always the same"
