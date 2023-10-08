@@ -5,6 +5,16 @@ on:
     branches: ["main"]
   # Allow starting from the UI.
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - dev
+          - test
+          - prod
 
 env:
     DATABASE_NAME: test-database
@@ -76,6 +86,8 @@ jobs:
     steps:
       - name: prepare deployment
         run: echo "preparing deployment"
+      - name: environment specification
+        run: echo "deploying to ${{ github.event.inputs.environment }} environment."
       - name: deploy
         run: exit 1
       - name: report
