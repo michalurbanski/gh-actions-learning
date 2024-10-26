@@ -17,10 +17,10 @@ on:
           - prod
 
 env:
-    DATABASE_NAME: test-database
-    ANOTHER_VARIABLE: "are you hiding this one as well?"
-    SECRET_PASSWORD: ${{ secrets.SECRET_PASSWORD }}
-    ARTIFACT_NAME: logs
+  DATABASE_NAME: test-database
+  ANOTHER_VARIABLE: "are you hiding this one as well?"
+  SECRET_PASSWORD: ${{ secrets.SECRET_PASSWORD }}
+  ARTIFACT_NAME: logs
 
 jobs:
   # Name of the job cannot contain spaces.
