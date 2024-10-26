@@ -16,6 +16,8 @@ on:
           - test
           - prod
 
+# This are env variables for the whole workflow.
+# We can also define variables in each of the jobs.
 env:
   DATABASE_NAME: test-database
   ANOTHER_VARIABLE: "are you hiding this one as well?"

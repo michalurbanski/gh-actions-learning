@@ -6,6 +6,8 @@ jobs:
   build:
     strategy:
       matrix:
+        # environment below is just an arbitrary key in this example.
+        # It has nothing to do with deployments to environments.
         environment: [dev, test, prod]
     runs-on: ubuntu-latest
     steps:
