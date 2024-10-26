@@ -87,20 +87,22 @@ jobs:
       - name: prepare deployment
         run: echo "preparing deployment"
       - name: environment specification
+        # Value below is read from the form used to start the workflow.
         run: echo "deploying to the '${{ github.event.inputs.environment }}' environment."
       - name: deploy
         run: exit 1
       - name: report
         # The 'if' condition has to have failure() function; otherwise it would be skipped
-        # (the default behavior is that if one step fails, then other are skipped).
+        # (the default behavior is that if one step fails, then the rest in this job are skipped).
         if: failure()
         run: |
-          echo "running the report"
-          echo "this step should be run only when deploy fails"
+          echo "Running the report"
+          echo "This step should be run only when deploy fails."
+          echo "This job fails on purpose in the previous step."
       - name: report2
-        # This step is skipped because there was previously a failure.
-        # It doesn't matter that the step before it has succeeded on failure.
-        run: echo "will this one be skipped?"
+        # This step is skipped because there was previously a failure, and we don't have if: failure()
+        # It doesn't matter that the step before has succeeded on failure.
+        run: echo "will this one be skipped? yes"
 
   failure-handling-job:
     runs-on: ubuntu-latest
