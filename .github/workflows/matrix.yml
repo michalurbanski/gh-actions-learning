@@ -12,11 +12,16 @@ jobs:
         # The 'environment' below, in the matrix, is just an arbitrary key in this example.
         # It has nothing to do with deployments to environments.
         environment: [dev, test, prod]
+        # include and exclude are reserved words
+        include:
+          - environment: staging
+            operating-system: linux
     runs-on: ubuntu-latest
     steps:
       - name: First Step
         run: |
           echo "This is the first step for: ${{ matrix.environment }}"
+          echo "Operating system ${{ matrix.operating-system }}"
       - name: Second Step
         run: echo "This is the second step. Always the same"
   
