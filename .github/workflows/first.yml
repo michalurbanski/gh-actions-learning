@@ -49,7 +49,7 @@ jobs:
       - name: create artifact
         run: echo "test" > output.log
       - name: store artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.ARTIFACT_NAME }}
           path: |
@@ -63,7 +63,7 @@ jobs:
       - name: "second build action 1"
         run: echo "second build action step 1"
   
-  # This job runs sequential to previous two jobs.
+  # This job runs sequential to the previous two jobs.
   sequential-build-action:
     runs-on: ubuntu-latest
     needs: ["first-build-action", "second-build-action"]
@@ -73,11 +73,11 @@ jobs:
         run: echo "sequential build action step \#1"
       - name: print github context
         run: echo "${{ toJson(github) }}"
-      - name: uses artifacts
-        uses: actions/download-artifact@v3
+      - name: download artifacts
+        uses: actions/download-artifact@v4
         with:
           name: ${{ env.ARTIFACT_NAME }}
-      - name: print logs
+      - name: print logs from artifacts
         run: cat output.log
   
   deploy-job:
@@ -87,7 +87,7 @@ jobs:
       - name: prepare deployment
         run: echo "preparing deployment"
       - name: environment specification
-        run: echo "deploying to ${{ github.event.inputs.environment }} environment."
+        run: echo "deploying to the '${{ github.event.inputs.environment }}' environment."
       - name: deploy
         run: exit 1
       - name: report
