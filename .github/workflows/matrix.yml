@@ -15,7 +15,8 @@ jobs:
       - name: Second Step
         run: echo "This is the second step. Always the same"
   
-  # This doesn't work in this way
+  # This doesn't work in this way. Even when the first job has the displayed name
+  # as "build (prod)", we cannot reference this name in the next job's 'needs' property.
   # deploy:
   #   runs-on: ubuntu-latest
   #   needs: "build (prod)"
