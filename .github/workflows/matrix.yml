@@ -4,9 +4,12 @@ on:
 
 jobs:
   build:
+    # By default, if one of the matrix jobs fails, the rest that didn't have the chance
+    # to execute are skipped. This ensures that all are executed.
+    continue-on-error: true
     strategy:
       matrix:
-        # environment below is just an arbitrary key in this example.
+        # The 'environment' below, in the matrix, is just an arbitrary key in this example.
         # It has nothing to do with deployments to environments.
         environment: [dev, test, prod]
     runs-on: ubuntu-latest
