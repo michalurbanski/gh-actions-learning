@@ -32,7 +32,7 @@ jobs:
     # By adding an environment, not it becomes a deployment pipeline for this environment.
     # Deployments to environments are visible in a separate section in the UI.
     # There are secrets defined for the 'dev' environment in the project settings.
-    environment: dev 
+    environment: dev
 
     steps:
       - name: first step

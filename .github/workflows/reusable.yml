@@ -8,15 +8,26 @@ on:
         required: false
         default: default input value
         type: string # type is mandatory
+      environment:
+        required: true
+        default: dev
+        type: string
     secrets:
       super-secret-value:
         description: This is our super secret value passed by the caller
         required: false
+      # Refer to the https://github.com/actions/runner/issues/1490 for passing secrets
+      SECRET_PASSWORD:
+        description: Secret is defined as the environment secret.
+        required: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: $${{ inputs.environment }} # This will take environment secret
     steps:
       - name: First step in reusable workflow
         run: echo "Starting the first step"
       - name: Printing input value
         run: echo ${{ inputs.passed-value }}
+      - name: Printing the secret
+        run: echo ${{ secrets.SECRET_PASSWORD }}

@@ -9,6 +9,12 @@ jobs:
   
   # calling reusable workflow as a job
   reusable:
+    # environment cannot be specified, so that means that environment secrets can't be passed?
     needs: first
     uses: ./.github/workflows/reusable.yml
+    with:
+      passed-value: custom value passed from the caller
+      environment: dev # hardcoded for simplicity, but normally would come from the input form
+    secrets: inherit # Ensures that secrets are passed from the caller.
+
 
