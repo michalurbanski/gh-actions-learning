@@ -16,5 +16,9 @@ jobs:
       passed-value: custom value passed from the caller
       environment: dev # hardcoded for simplicity, but normally would come from the input form
     secrets: inherit # Ensures that secrets are passed from the caller.
-
-
+  printing-results:
+    runs-on: ubuntu-latest
+    needs: reusable
+    steps:
+      - name: Printing the output of reusable job
+        run: echo ${{ needs.reusable.outputs.reusable-result }}

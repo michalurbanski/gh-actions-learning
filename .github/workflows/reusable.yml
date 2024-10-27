@@ -20,10 +20,18 @@ on:
       SECRET_PASSWORD:
         description: Secret is defined as the environment secret.
         required: true
+    outputs:
+      reusable-result:
+        description: Result value from the reusable workflow
+        value: ${{ jobs.deploy.outputs.result }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }} # This will take environment secret
+    # This will ensure that the environment secret will be fetched.
+    # But requires "secrets: inherit" to be set by the caller.
+    environment: ${{ inputs.environment }}
+    outputs:
+      result: ${{ steps.output.outputs.set-output }} # 2nd is id of the step, 3rd its outputs, 4th our output value
     steps:
       - name: First step in reusable workflow
         run: echo "Starting the first step"
@@ -31,3 +39,6 @@ jobs:
         run: echo ${{ inputs.passed-value }}
       - name: Printing the secret
         run: echo ${{ secrets.SECRET_PASSWORD }}
+      - name: Set output
+        id: output # Step has to have id to reference it in the outputs of this job.
+        run: echo "set-output=ok" >> $GITHUB_OUTPUT
