@@ -23,7 +23,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: $${{ inputs.environment }} # This will take environment secret
+    environment: ${{ inputs.environment }} # This will take environment secret
     steps:
       - name: First step in reusable workflow
         run: echo "Starting the first step"
