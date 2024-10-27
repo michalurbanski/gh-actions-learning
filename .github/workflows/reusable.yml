@@ -1,0 +1,22 @@
+name: reusable-workflow
+on:
+  # workflow_call makes it not runnable on its own, but can be run from other workflows.
+  workflow_call:
+    inputs:
+      passed-value:
+        description: Pass here value as an input
+        required: false
+        default: default input value
+        type: string # type is mandatory
+    secrets:
+      super-secret-value:
+        description: This is our super secret value passed by the caller
+        required: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: First step in reusable workflow
+        run: echo "Starting the first step"
+      - name: Printing input value
+        run: echo ${{ inputs.passed-value }}
