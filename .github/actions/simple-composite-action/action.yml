@@ -22,6 +22,6 @@ runs:
       id: second-step
       run: |
         echo "Second text using a variable '${{ inputs.input-value-1 }}'"
-        echo "out='composite action was executed'" >> $GITHUB_OUTPUT
+        echo "out=composite action was executed" >> $GITHUB_OUTPUT
       shell: bash
       
