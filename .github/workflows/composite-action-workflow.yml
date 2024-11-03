@@ -9,15 +9,9 @@ jobs:
       # The code of the action is in the repository itself, so its source code is needed.
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: ls
-        run: |
-          cd .github/actions
-          ls
-          cd .github/actions/simple-composite-action
-          ls
       - name: Referencing a custom composite action here
         id: composite-action
-        uses: ./github/actions/simple-composite-action # .yml file doesn't have to be provided, folder is enough
+        uses: ./.github/actions/simple-composite-action # .yml file doesn't have to be provided, folder is enough
         with:
           input-value-1: 'true'
       - name: Printing output from a composite action
