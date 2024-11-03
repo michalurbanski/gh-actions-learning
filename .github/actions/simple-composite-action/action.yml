@@ -1,0 +1,27 @@
+# Composite action is just an encapsulation of some steps.
+# These can be steps that make sense to be always used together.
+
+name: Simple composite action
+description: Demonstrates composite action
+inputs:
+  input-value-1:
+    description: Just a simple input value
+    required: false
+    default: 'false' # This is how bool is passed
+outputs:
+  summary:
+    description: Just a simple output value
+    value: ${{ steps.second-step.outputs.out }}
+runs:
+  using: 'composite' # This is always the same for a composite action.
+  steps:
+    - name: Display first text from composite action
+      run: echo "First text"
+      shell: bash # This is not needed in the workflow, but needed in action.
+    - name: Display second text from composite action
+      id: second-step
+      run: |
+        echo "Second text using a variable '${{ inputs.input-value-1 }}'"
+        echo "out='composite action was executed'" >> $GITHUB_OUTPUT
+      shell: bash
+      

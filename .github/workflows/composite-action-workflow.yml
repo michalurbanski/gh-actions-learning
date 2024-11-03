@@ -1,0 +1,16 @@
+name: Composite action workflow
+on: workflow_dispatch
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: First step
+        run: echo "first step"
+      - name: Referencing a custom composite action here
+        id: composite-action
+        uses: ./github/actions/simple-composite-action # .yml file doesn't have to be provided, folder is enough
+        with:
+          input-value-1: 'true'
+      - name: Printing output from a composite action
+        run: echo "${{ steps.composite-action.outputs.summary }}"
+  
