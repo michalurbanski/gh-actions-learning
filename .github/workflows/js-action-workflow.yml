@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v
+        uses: actions/checkout@v4
       - name: Run custom js action
         id: js-action
         uses: ./.github/actions/simple-js-action
