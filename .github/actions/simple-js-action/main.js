@@ -7,7 +7,7 @@ function run() {
 
   const input = core.getInput('custom-name');
 
-  core.exec('ls') // A way to execute any installed command on the runner.
+  exec.exec('ls') // A way to execute any installed command on the runner.
 
   core.notice(input);
   core.setOutput('js-output', 'Custom js action output value');
