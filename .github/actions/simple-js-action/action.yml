@@ -1,0 +1,17 @@
+# node_modules for the custom action cannot go into .gitignore
+# github doesn't download any dependencies, so they have to be there
+
+name: Custom js action
+description: Simple custom js action
+runs:
+  using: node20
+  main: index.js
+inputs:
+  custom-name:
+    description: Custom name provided as input
+    required: false
+    default: 'first'
+outputs:
+  js-output:
+    description: 'Output value from custom js action'
+    # For output we don't have 'value' property like in case of composite action
