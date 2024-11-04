@@ -5,7 +5,7 @@ name: Custom js action
 description: Simple custom js action
 runs:
   using: node20
-  main: index.js
+  main: main.js
 inputs:
   custom-name:
     description: Custom name provided as input
