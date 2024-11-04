@@ -3,7 +3,9 @@ const github = require('@actions/github')
 const exec = require('@actions/exec')
 
 function run() {
-  core.notice('This is how you print something to step output');
+  core.notice('This adds annotation for the whole workflow. It\'s displayed under / above the workflow.');
+  
+  console.log('This is how you print something to the step output');
 
   const input = core.getInput('custom-name');
 
