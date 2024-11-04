@@ -11,7 +11,7 @@ function run() {
 
   exec.exec('ls') // A way to execute any installed command on the runner.
 
-  core.notice(input);
+  console.log(input);
   core.setOutput('js-output', 'Custom js action output value');
 }
 
