@@ -11,12 +11,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Preparation
+      - name: Literal syntax
         run: |
           echo "First line"
           echo "Second line"
       
-      - name: Folded
+      # Outputs: "first line echo second line"
+      - name: Folded syntax
         run: >
           echo "First line"
           echo "Second line"
+
+      - name: Run go application
+        run: go run .
