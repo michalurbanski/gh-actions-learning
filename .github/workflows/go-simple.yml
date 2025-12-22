@@ -24,5 +24,5 @@ jobs:
 
       - name: Run go application
         run: |
-          go mod init
-          go run .
+          cd ./app
+          go run main.go
