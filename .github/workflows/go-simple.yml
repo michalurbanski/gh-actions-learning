@@ -25,4 +25,7 @@ jobs:
       - name: Run go application
         run: |
           cd ./app
+          go version
+          
+          echo "now running the application from ci/cd pipeline"
           go run main.go
