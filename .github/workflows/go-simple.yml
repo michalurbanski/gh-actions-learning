@@ -23,4 +23,6 @@ jobs:
           echo "Second line"
 
       - name: Run go application
-        run: go run .
+        run: |
+          go mod init
+          go run .
