@@ -29,3 +29,23 @@ jobs:
           
           echo "now running the application from ci/cd pipeline"
           go run main.go
+
+  # The second job; let's make it wait for the first job.
+  info:
+    needs: [build]
+    runs-on: ubuntu-latest
+    # Runs in the context of an environment, just to show the possibility.
+    environment:
+      name: dev
+    steps:
+      - name: Print out github context
+        run: echo "${{ toJson(github) }}"
+
+      - name: Create file for an artifact
+        run: echo "this is test" > ./test.txt
+
+      - name: Upload an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dummy.zip
+          path: ./test.txt
