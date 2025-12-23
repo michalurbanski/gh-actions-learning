@@ -49,3 +49,15 @@ jobs:
         with:
           name: dummy.zip
           path: ./test.txt
+
+  passing-data:
+    needs: [build, info]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Produce step output
+        # id has to be assigned if we later want to read from it, it doesn't work by referencing the name.
+        id: produce-step-output
+        run: echo "CUSTOM_VALUE=this is test" >> $GITHUB_OUTPUT
+      
+      - name: Read value from the previous step
+        run: echo "Custom value is ${{ steps.produce-step-output.outputs.CUSTOM_VALUE }}"
