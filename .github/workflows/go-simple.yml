@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
       
       - name: Literal syntax
         run: |
@@ -45,7 +45,7 @@ jobs:
         run: echo "this is test" > ./test.txt
 
       - name: Upload an artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v6
         with:
           name: dummy.zip
           path: ./test.txt
