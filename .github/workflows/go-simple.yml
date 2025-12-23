@@ -53,6 +53,11 @@ jobs:
   passing-data:
     needs: [build, info]
     runs-on: ubuntu-latest
+
+    # Variable from one of the steps could be also a job output.
+    outputs:
+      custom-value: ${{ steps.produce-step-output.outputs.CUSTOM_VALUE }}
+
     steps:
       - name: Produce step output
         # id has to be assigned if we later want to read from it, it doesn't work by referencing the name.
