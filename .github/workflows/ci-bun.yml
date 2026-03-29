@@ -10,7 +10,7 @@ jobs:
         id: bun-composite-action
         uses: ./.github/actions/bun-composite-action
         with:
-          who-to-greet: 'michal'
+          who_to_greet: 'michal'
       - name: printing out output value
         run: echo ${{ steps.bun-composite-action.outputs.time }}
         
