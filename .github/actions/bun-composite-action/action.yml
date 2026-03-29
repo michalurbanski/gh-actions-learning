@@ -22,6 +22,7 @@ runs:
       shell: bash
       working-directory: ${{ github.action_path }}
 
+    # For debugging only.
     # - name: checking where is the problem
     #   shell: bash
     #   run: echo ${{ inputs.who_to_greet }}
@@ -31,7 +32,8 @@ runs:
       run: bun run index.ts
       shell: bash
       # !!! Set working directory so that bun is executed from where the node_modules are.
-      # !!! Still, it doesn't work - input values are not passed, and output values are not returned.
       working-directory: ${{ github.action_path }}
+      # shell starts bun with a clean environment that doesn't see the actions inputs unless explicitly mapped, like below.
+      # Has to start with INPUT_
       env:
         INPUT_WHO_TO_GREET: ${{ inputs.who_to_greet }}
