@@ -26,5 +26,7 @@ runs:
     #   run: echo ${{ inputs.who_to_greet }}
 
     - name: Run main script
-      run: bun run ${{ github.action_path }}/index.ts
+      run: bun run index.ts
       shell: bash
+      # !!! Set working directory so that bun is executed from where the node_modules are.
+      working-directory: ${{ github.action_path }}
