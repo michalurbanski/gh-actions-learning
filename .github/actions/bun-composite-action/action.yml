@@ -34,4 +34,4 @@ runs:
       # !!! Still, it doesn't work - input values are not passed, and output values are not returned.
       working-directory: ${{ github.action_path }}
       env:
-        INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
+        INPUT_WHO_TO_GREET: ${{ inputs.who_to_greet }}
