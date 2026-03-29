@@ -4,6 +4,8 @@ jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: run composite bun action
         id: bun-composite-action
         uses: ./.github/actions/bun-composite-action
