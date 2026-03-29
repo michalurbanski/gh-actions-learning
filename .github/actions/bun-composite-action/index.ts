@@ -2,7 +2,7 @@ import * as core from '@actions/core';
 
 async function run(): Promise<void> {
   try {
-    const nameToGreet = core.getInput('INPUT_WHO_TO_GREET');
+    const nameToGreet = core.getInput('WHO_TO_GREET');
     core.info(`Hello ${nameToGreet}`);
 
     // const time = new Date().toTimeString();
