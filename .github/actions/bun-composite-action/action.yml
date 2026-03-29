@@ -29,4 +29,5 @@ runs:
       run: bun run index.ts
       shell: bash
       # !!! Set working directory so that bun is executed from where the node_modules are.
+      # !!! Still, it doesn't work - input values are not passed, and output values are not returned.
       working-directory: ${{ github.action_path }}
