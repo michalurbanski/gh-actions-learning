@@ -4,7 +4,7 @@ inputs:
   who-to-greet:
     description: Provide the name who to greet in the logs
     required: true
-    # default does not work with required: true
+    # default does not work with required: true?
 outputs:
   time:
     description: The time that you were greeted
@@ -21,6 +21,10 @@ runs:
       shell: bash
       working-directory: ${{ github.action_path }}
 
-    - name: Run main script
-      run: bun run ${{ github.action_path }}/index.ts
+    - name: checking where is the problem
       shell: bash
+      run: echo ${{ inputs.who-to-greet }}
+
+    # - name: Run main script
+    #   run: bun run ${{ github.action_path }}/index.ts
+    #   shell: bash
