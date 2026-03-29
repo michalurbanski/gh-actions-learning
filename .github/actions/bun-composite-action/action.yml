@@ -11,6 +11,11 @@ outputs:
 runs:
   using: 'composite'
   steps:
+    - name: Setup bun
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
+
     - name: Install dependencies
       run: bun install
       shell: bash
