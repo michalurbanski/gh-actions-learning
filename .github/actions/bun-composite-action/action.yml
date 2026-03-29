@@ -4,7 +4,7 @@ inputs:
   who-to-greet:
     description: Provide the name who to greet in the logs
     required: true
-    default: world
+    # default does not work with required: true
 outputs:
   time:
     description: The time that you were greeted
