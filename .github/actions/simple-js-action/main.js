@@ -5,7 +5,9 @@ const exec = require('@actions/exec')
 function run() {
   core.notice('This adds annotation for the whole workflow. It\'s displayed under / above the workflow.');
   
-  console.log('This is how you print something to the step output');
+  console.log(`
+    This is how you print something to the step output - inside the step. 
+    Not an output value. Output value is at the end of this file.`);
 
   const input = core.getInput('custom-name');
 
