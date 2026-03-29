@@ -1,0 +1,14 @@
+name: ci bun composite action testing
+on: workflow_dispatch
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run composite bun action
+        id: bun-composite-action
+        uses: ./.github/actions/bun-composite-action
+        with:
+          who-to-greet: 'michal'
+      - name: printing out output value
+        run: echo ${{ steps.bun-composite-action.outputs.time }}
+        
