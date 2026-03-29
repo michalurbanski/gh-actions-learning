@@ -22,5 +22,5 @@ runs:
       working-directory: ${{ github.action_path }}
 
     - name: Run main script
-      run: bun run ${{ github.action_path }}/main.ts
+      run: bun run ${{ github.action_path }}/index.ts
       shell: bash
