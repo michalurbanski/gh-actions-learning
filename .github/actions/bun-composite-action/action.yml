@@ -8,6 +8,7 @@ inputs:
 outputs:
   time:
     description: The time that you were greeted
+    value: ${{ steps.logic.outputs.time }}
 runs:
   using: 'composite'
   steps:
@@ -26,8 +27,11 @@ runs:
     #   run: echo ${{ inputs.who_to_greet }}
 
     - name: Run main script
+      id: logic
       run: bun run index.ts
       shell: bash
       # !!! Set working directory so that bun is executed from where the node_modules are.
       # !!! Still, it doesn't work - input values are not passed, and output values are not returned.
       working-directory: ${{ github.action_path }}
+      env:
+        INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
