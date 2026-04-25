@@ -45,6 +45,7 @@ jobs:
 
   second-job-in-reusable-workflow:
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     needs: deploy
     steps:
       - name: Second job action
