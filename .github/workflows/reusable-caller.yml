@@ -21,4 +21,5 @@ jobs:
     needs: reusable
     steps:
       - name: Printing the output of reusable job
+        # This is the correct syntax - needs.reusable... linter is wrong here as well
         run: echo ${{ needs.reusable.outputs.reusable-result }}
