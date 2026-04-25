@@ -1,0 +1,25 @@
+# Shows two jobs, but the second job doesn't use the 'needs' keyword.
+
+name: Without-needs
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build code
+        run: |
+          echo "Failing on purpose"
+          exit 1
+  
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test code
+        run: |
+          echo "simulating testing"
+
