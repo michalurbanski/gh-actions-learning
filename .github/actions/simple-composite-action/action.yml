@@ -14,6 +14,7 @@ outputs:
     value: ${{ steps.second-step.outputs.out }}
 runs:
   using: 'composite' # This is always the same for a composite action.
+  # Note: unlike with regular steps in a workflow, when composite action is imported, then name of the steps are not visible.
   steps:
     - name: Display first text from composite action
       run: echo "First text"
