@@ -4,6 +4,10 @@ name: Go docker
 on:
   workflow_dispatch:
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}-go-api
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,3 +18,17 @@ jobs:
         run: |
           cd api
           go build main.go
+
+      - name: log in to container registry
+        uses: docker/login-action@4907a6ddec9925e35a0a9e82d7399ccc52663121
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: build and push docker image
+        uses: docker/build-push-action@bcafcacb16a39f128d818304e6c9c0c18556b85f
+        with:
+          context: ./api
+          push: true
+
