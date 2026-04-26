@@ -1,0 +1,16 @@
+# Simple go pipeline to build api that is hosted inside docker container.
+name: Go docker
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: build
+        run: |
+          cd api
+          go build main.go
