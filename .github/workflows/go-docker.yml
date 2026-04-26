@@ -11,6 +11,12 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Write has to be also enabled in settings at first.
+      # Used to solve this error:
+      # ERROR: failed to build: denied: installation not allowed to Create organization package
+      packages: write 
     steps:
       - uses: actions/checkout@v6
 
