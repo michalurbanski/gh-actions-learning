@@ -26,5 +26,5 @@ jobs:
         env:
           SECRET_PASSWORD: ${{ secrets.SECRET_PASSWORD }}
         run: |
-          - echo "sample line"
-          - echo "${{ env.SECRET_PASSWORD }}"
+          echo "sample line"
+          echo "${{ env.SECRET_PASSWORD }}"
