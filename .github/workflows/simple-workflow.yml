@@ -1,6 +1,6 @@
 name: Simple workflow
 on:
-  push:
+  # push:
   workflow_dispatch:
     inputs:
       environment:
