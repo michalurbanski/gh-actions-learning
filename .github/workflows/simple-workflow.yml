@@ -2,7 +2,15 @@ name: Simple workflow
 on:
   push:
   workflow_dispatch:
-
+    inputs:
+      environment:
+        description: Environment to deploy to
+        required: true
+        options:
+          - dev-we
+          - dev-us
+        default: dev-we
+        type: choice
 jobs:
   build:
     runs-on: ubuntu-slim
@@ -11,3 +19,5 @@ jobs:
         run: |
           echo "first line"
           echo "second line"
+      - name: environment print
+        run: echo ${{ inputs.environment }}
