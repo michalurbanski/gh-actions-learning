@@ -1,0 +1,13 @@
+name: Simple workflow
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-slim
+    steps:
+      - name: first step
+        run: |
+          echo "first line"
+          echo "second line"
