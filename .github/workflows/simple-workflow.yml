@@ -1,5 +1,5 @@
 name: Simple workflow
-description: "my simple workflow"
+run-name: 'Deploying to the environment: ${{ inputs.environment }} from branch ${{ github.ref_name }}'
 on:
   # push:
   workflow_dispatch:
