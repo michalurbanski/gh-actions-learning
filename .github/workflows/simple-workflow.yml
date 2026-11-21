@@ -11,7 +11,7 @@ on:
           - dev-we
           - dev-us
         default: dev-we
-        type: choice   
+        type: choice
 env:
   # we can declare envs from inputs at the workflow level, but not based of secrets.
   # NOTE: This technique of assigning inputs and secrets to env is to avoid interpolation,
