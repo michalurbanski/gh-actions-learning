@@ -21,10 +21,14 @@ jobs:
           echo "first line"
           echo "second line"
       - name: environment print
-        run: echo ${{ inputs.environment }}
+        # NOTE: This technique to avoid interpolation which avoids script injection bugs. Make inputs and secrets env variables.
+        env:
+          ENVIRONMENT: ${{ inputs.environment }}
+        run: echo "$ENVIRONMENT"
       - name: using secret
         env:
           SECRET_PASSWORD: ${{ secrets.SECRET_PASSWORD }}
         run: |
           echo "sample line"
-          echo "${{ env.SECRET_PASSWORD }}"
+          echo "$SECRET_PASSWORD"
+          echo "We can't print secret, but we can print its length: ${#SECRET_PASSWORD}"
