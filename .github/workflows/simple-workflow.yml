@@ -1,4 +1,5 @@
 name: Simple workflow
+description: "my simple workflow"
 on:
   # push:
   workflow_dispatch:
@@ -10,24 +11,27 @@ on:
           - dev-we
           - dev-us
         default: dev-we
-        type: choice    
+        type: choice   
+env:
+  # we can declare envs from inputs at the workflow level, but not based of secrets.
+  # NOTE: This technique of assigning inputs and secrets to env is to avoid interpolation,
+  # which avoids script injection bugs. Make inputs and secrets env variables.
+  ENVIRONMENT: ${{ inputs.environment }}
 jobs:
   build:
     runs-on: ubuntu-slim
     environment: ${{ inputs.environment }}
+    env:
+      # We can use secrets at steps level and also like here at the jobs level.
+      SECRET_PASSWORD: ${{ secrets.SECRET_PASSWORD }}
     steps:
       - name: first step
         run: |
           echo "first line"
           echo "second line"
       - name: environment print
-        # NOTE: This technique to avoid interpolation which avoids script injection bugs. Make inputs and secrets env variables.
-        env:
-          ENVIRONMENT: ${{ inputs.environment }}
         run: echo "$ENVIRONMENT"
       - name: using secret
-        env:
-          SECRET_PASSWORD: ${{ secrets.SECRET_PASSWORD }}
         run: |
           echo "sample line"
           echo "$SECRET_PASSWORD"
