@@ -12,13 +12,14 @@ on:
           - dev-us
         default: dev-we
         type: choice
+      # ! Note: github has now built-in environment type
       test:
         description: built-in environment
         required: true
         type: environment
 env:
   # we can declare envs from inputs at the workflow level, but not based of secrets.
-  # NOTE: This technique of assigning inputs and secrets to env is to avoid interpolation,
+  # ! NOTE: This technique of assigning inputs and secrets to env is to avoid interpolation,
   # which avoids script injection bugs. Make inputs and secrets env variables.
   ENVIRONMENT: ${{ inputs.environment }}
 jobs:
